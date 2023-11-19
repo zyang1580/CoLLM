@@ -11,18 +11,9 @@ model:
   end_sym: "###"
   prompt_path: "prompts/rec_alignment_amazon.txt"
   # prompt_template: '### Input: {} \n### Response:'
-  prompt_template: '{}'
-  # prompt_template: '###Input: {} ###Response: '
-  # ckpt: '/path/to/stage1/checkpoint/'
-  # ckpt: '/data/zyang/LLM/PretrainedModels/mf/best_model_d128.pth'  
+  prompt_template: '{}' 
   # Vicuna
   llama_model: "/home/sist/zyang/LLM/PretrainedModels/vicuna/working-v0/"
-  # llama_model: "/data/zyang/LLM/PretrainedModels/vicuna/working-v0/"
-  ## lamma2: 
-  # llama_model: "/home/sist/zyang/LLM/PretrainedModels/llama2/llama2-7b/"
-  # LLaMA-7B
-  # llama_model: "openlm-research/open_llama_7b_v2"
-  # llama_model: "/home/sist/zyang/LLM/PretrainedModels/llama/open_llama_7b_v2/"
   user_num: -100
   item_num: -100
   ans_type: 'v2'
@@ -37,29 +28,18 @@ model:
     user_num: -100
     item_num: -100
     embedding_size: 4096 # the size of the LLM token embedding
-    # pretrained_path: /home/sist/zyang/LLM/PretrainedModels/mf/best_model_d128.pth
-    # pretrained_path: /home/sist/zyang/LLM/PretrainedModels/mf/ml_1m_best_model_d256lr-0.001wd1e-05.pth
-    # pretrained_path:  /home/sist/zyang/LLM/minigpt4recLog/ml_100k_ood_best_model_d256lr-0.01wd0.0001.pth
-    # pretrained_path: /home/sist/zyang/LLM/PretrainedModels/mf/0923_book_oodv2_best_model_d256lr-0.001wd1e-06.pth
     pretrained_path: not_have
     
   # ckpt: /home/sist/zyang/LLM/minigpt4recLog/20230925215/checkpoint_best.pth #TALLRec
-  # ckpt: /home/sist/zyang/LLM/minigpt4recLog/20231003124/checkpoint_best.pth
-  # ckpt: /home/sist/zyang/LLM/minigpt4recLog/20230929183/checkpoint_best.pth
-  # ckpt: /home/sist/zyang/LLM/minigpt4recLog/20230927142/checkpoint_best.pth
+
 
   
 
 datasets:
   amazon_ood:
-    # path: /home/sist/zyang/LLM/MiniGPT-4/dataset/ml-100k/  #"~/LLM/MiniGPT-4/dataset/ml-100k/"
     path: /home/sist/zyang/LLM/datasets/book/
-    # path: "~/LLM/MiniGPT-4/dataset/ml-1m/"` 
-    # path: /home/sist/zyang/LLM/datasets/ml-1m
     data_type: default
     build_info:
-      # storage: /path/to/cc_sbu_dataset/{00000..01255}.tar
-      # storage: /home/sist/zyang/LLM/MiniGPT-4/dataset/ml-100k/ #~/LLM/MiniGPT-4/dataset/ml-100k/
       storage: /home/sist/zyang/LLM/datasets/book/
       # storage: /home/sist/zyang/LLM/datasets/ml-1m/
 
@@ -72,9 +52,6 @@ run:
   init_lr: 1e-4
   min_lr: 8e-5
   warmup_lr: 1e-5
-  # init_lr: 3e-5
-  # min_lr: 1e-5
-  # warmup_lr: 1e-6
   mode: 'v2' # stage1: v1, 
 
   weight_decay: 1e-3 #0.05

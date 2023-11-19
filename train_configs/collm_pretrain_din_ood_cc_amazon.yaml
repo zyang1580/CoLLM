@@ -12,17 +12,8 @@ model:
   prompt_path: "prompts/rec_alignment_amazon_dcn.txt"
   # prompt_template: '### Input: {} \n### Response:'
   prompt_template: '{}'
-  # prompt_template: '###Input: {} ###Response: '
-  # ckpt: '/path/to/stage1/checkpoint/'
-  # ckpt: '/data/zyang/LLM/PretrainedModels/mf/best_model_d128.pth'  
   # Vicuna
   llama_model: "/home/sist/zyang/LLM/PretrainedModels/vicuna/working-v0/"
-  # llama_model: "/data/zyang/LLM/PretrainedModels/vicuna/working-v0/"
-  ## lamma2: 
-  # llama_model: "/home/sist/zyang/LLM/PretrainedModels/llama2/llama2-7b/"
-  # LLaMA-7B
-  # llama_model: "openlm-research/open_llama_7b_v2"
-  # llama_model: "/home/sist/zyang/LLM/PretrainedModels/llama/open_llama_7b_v2/"
   user_num: -100
   item_num: -100
   ans_type: 'v2'
@@ -42,47 +33,7 @@ model:
     drop: 0.8
     l2_emb: 1e-4 # not used
     maxlen: 10
-
-    # pretrained_path: /home/sist/zyang/LLM/PretrainedModels/mf/best_model_d128.pth
-    # pretrained_path: /home/sist/zyang/LLM/PretrainedModels/mf/ml_1m_best_model_d256lr-0.001wd1e-05.pth
-    # pretrained_path: /home/sist/zyang/LLM/minigpt4recLog/OOD_lgcn_ml_100_best_model_d256lr-0.0001wd1e-07.pth
     pretrained_path: /home/sist/zyang/LLM/PretrainedModels/din/1010_book_DIN_lr0.0001-dp-0.8-wd-0.01loadPFalse.pt
-    
-  # ckpt: '/data/zyang/LLM/PretrainedModels/minigpt/prerained_minigpt4_7b.pth'
-  # ckpt: /data/zyang/LLM/minigpt4rec/models/checkpoint_best.pth
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230706143/checkpoint_best.pth
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230714190/checkpoint_best.pth
-  # stage1-model: bacth 32
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230726192/checkpoint_best.pth
-  # stage1-model: bacth 8
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230726202/checkpoint_best.pth
-  # stage1-model: prompt without "collaborative"
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230726213/checkpoint_best.pth
-  # stage1-model: given xianyan knowledge
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230727203/checkpoint_best.pth
-  # the fist item or the second item
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230727233/checkpoint_best.pth
-  # the formmer or the latter
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230727224/checkpoint_best.pth
-  # the formmer item or the latter item
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230727223/checkpoint_best.pth
-  # the formmer item or the latter item lora
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230728134/checkpoint_best.pth
-  # the formmer or the latter  lora 
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230728203/checkpoint_best.pth
-  # five times
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230730194/checkpoint_best.pth
-  # lm_head stage1
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230801163/checkpoint_best.pth
-
-  # 0815
-  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230815174/checkpoint_best.pth
-
-  # ckpt: /home/sist/zyang/LLM/minigpt4recLog/20230918143/checkpoint_best.pth # tallrec
-  # ckpt: /home/sist/zyang/LLM/minigpt4recLog/20230920154/checkpoint_best.pth # tune proj based on tallrec lr 1e-2
-  # ckpt: /home/sist/zyang/LLM/minigpt4recLog/20230920161/checkpoint_best.pth # tune proj based on tallrec lr 1e-3
-  # ckpt: /data2/zyang/minigpt4rec-log/tallrec_ml_best.pth # tallrec
-  # ckpt: /home/sist/zyang/LLM/minigpt4recLog/20230925215/checkpoint_best.pth #tall rec
   ckpt: /home/sist/zyang/LLM/minigpt4recLog/20231011112/checkpoint_best.pth # best
 
 
@@ -108,22 +59,17 @@ run:
   init_lr: 1e-2
   min_lr: 8e-5
   warmup_lr: 1e-5
-  # init_lr: 3e-5
-  # min_lr: 1e-5
-  # warmup_lr: 1e-6
-  mode: 'v2' # stage1: v1, 
+  mode: 'v2' 
 
   weight_decay: 1e-3 #0.05
   max_epoch: 200
-  iters_per_epoch: 100 #100 #50 #200
-  batch_size_train: 8 #48
-  batch_size_eval: 64 #48
+  iters_per_epoch: 100 #
+  batch_size_train: 8 #
+  batch_size_eval: 64 #
   num_workers: 4
   warmup_steps: 200 #200
 
   seed: 42
-  # output_dir: "output"
-  # output_dir: /data2/zyang/minigpt4rec-log/
   output_dir: /home/sist/zyang/LLM/minigpt4recLog
 
   amp: True

@@ -81,6 +81,9 @@ vicuna_weights
 
 Then, set the path to the vicuna weight in the `"llama_model" ` field of a traing config file, e.g., [here](train_configs_/collm_pretrain_mf_ood.yaml#L20)  for CoLLM-MF.
 
+**3. Prepare the Datasets**
+You can process the data yourself using the code provided in the ```./dataset``` directory. Alternatively, you can download our pre-processed data from [here](hettp:///xxxx).
+
 
 
 ### Training
@@ -96,7 +99,7 @@ When implementing, you need to set the hyper-parameters in the training config f
 - freeze_proj: True  # freeze the mapping function or not
 - freeze_lora: False # tuning the LoRA module
 - prompt_path: "prompt_/tallrec_movie.txt" # use the prompt without the user/item IDs
-- ckpt: None # without pretrained LoRA and CIE (LoRA), you can aslo directly delet this hypee-parameter 
+- ckpt: None # without pretrained LoRA and CIE (LoRA), you can aslo directly delete this hypee-parameter 
 - evaluate：False #set training
 ```
 

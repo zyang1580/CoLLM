@@ -82,7 +82,7 @@ vicuna_weights
 Then, set the path to the vicuna weight in the `"llama_model" ` field of a traing config file, e.g., [here](train_configs_/collm_pretrain_mf_ood.yaml#L20)  for CoLLM-MF.
 
 **3. Prepare the Datasets**
-You can process the data yourself using the code provided in the ```./dataset``` directory. Alternatively, you can download our pre-processed data from [here](hettp:///xxxx).
+You can process the data yourself using the code provided in the ```./dataset``` directory. Alternatively, you can download our pre-processed data from [here](http:///xxxx).
 
 
 

@@ -1,0 +1,136 @@
+model:
+  arch: mini_gpt4rec_v2
+  model_type: pretrain_vicuna
+  freeze_rec: True
+  freeze_proj: False  # stage 1: proj false, lora: false
+  freeze_lora: True #  sateg2: proj true, lora false
+  max_txt_len: 1024
+  proj_token_num: 1
+  proj_mid_times: 10
+  proj_drop: 0
+  end_sym: "###"
+  prompt_path: "prompts/rec_alignment.txt"
+  # prompt_template: '### Input: {} \n### Response:'
+  prompt_template: '{}'
+  # prompt_template: '###Input: {} ###Response: '
+  # ckpt: '/path/to/stage1/checkpoint/'
+  # ckpt: '/data/zyang/LLM/PretrainedModels/mf/best_model_d128.pth'  
+  # Vicuna
+  llama_model: "/home/sist/zyang/LLM/PretrainedModels/vicuna/working-v0/"
+  # llama_model: "/data/zyang/LLM/PretrainedModels/vicuna/working-v0/"
+  ## lamma2: 
+  # llama_model: "/home/sist/zyang/LLM/PretrainedModels/llama2/llama2-7b/"
+  # LLaMA-7B
+  # llama_model: "openlm-research/open_llama_7b_v2"
+  # llama_model: "/home/sist/zyang/LLM/PretrainedModels/llama/open_llama_7b_v2/"
+  user_num: -100
+  item_num: -100
+  ans_type: 'v2'
+  rec_model: "lightgcn" #[MF, Lightgcn]
+  lora_config:
+    use_lora: True
+    r: 8
+    alpha: 16
+    target_modules: ["q_proj", "v_proj"] #['lm_head'] #["q_proj", "v_proj",'k_proj','o_proj']
+    dropout: 0.05
+  rec_config: #lgcn_config
+    dataset: ml1m
+    gcn_layers: 2
+    keep_prob: 0.6
+    A_n_fold: 100
+    A_split: False
+    dropout: False
+    pretrain: 0
+    init_emb: 1e-1
+    user_num: -100
+    item_num: -100
+    embedding_size: 64
+    embed_size: 64
+    # pretrained_path: /home/sist/zyang/LLM/PretrainedModels/mf/best_model_d128.pth
+    # pretrained_path: /home/sist/zyang/LLM/PretrainedModels/mf/ml_1m_best_model_d256lr-0.001wd1e-05.pth
+    # pretrained_path: /home/sist/zyang/LLM/minigpt4recLog/OOD_lgcn_ml_100_best_model_d256lr-0.0001wd1e-07.pth
+    pretrained_path: /home/sist/zyang/LLM/PretrainedModels/lgcn/0918-OODv2_lgcn_ml1m_best_model_d64lr-0.01wd0.0001.pth
+    
+  # ckpt: '/data/zyang/LLM/PretrainedModels/minigpt/prerained_minigpt4_7b.pth'
+  # ckpt: /data/zyang/LLM/minigpt4rec/models/checkpoint_best.pth
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230706143/checkpoint_best.pth
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230714190/checkpoint_best.pth
+  # stage1-model: bacth 32
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230726192/checkpoint_best.pth
+  # stage1-model: bacth 8
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230726202/checkpoint_best.pth
+  # stage1-model: prompt without "collaborative"
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230726213/checkpoint_best.pth
+  # stage1-model: given xianyan knowledge
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230727203/checkpoint_best.pth
+  # the fist item or the second item
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230727233/checkpoint_best.pth
+  # the formmer or the latter
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230727224/checkpoint_best.pth
+  # the formmer item or the latter item
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230727223/checkpoint_best.pth
+  # the formmer item or the latter item lora
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230728134/checkpoint_best.pth
+  # the formmer or the latter  lora 
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230728203/checkpoint_best.pth
+  # five times
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230730194/checkpoint_best.pth
+  # lm_head stage1
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230801163/checkpoint_best.pth
+
+  # 0815
+  # ckpt: /home/sist/zyang/LLM/MiniGPT-4/minigpt4/output/minigpt4rec_pretain/20230815174/checkpoint_best.pth
+
+  ckpt: /home/sist/zyang/LLM/minigpt4recLog/20230918143/checkpoint_best.pth # tallrec
+  # ckpt: /home/sist/zyang/LLM/minigpt4recLog/20230919171/checkpoint_best.pth # tune proj based on tallrec
+
+datasets:
+  movie_ood:
+    path: /home/sist/zyang/LLM/datasets/ml-1m/  #"~/LLM/MiniGPT-4/dataset/ml-100k/"
+    # path: "~/LLM/MiniGPT-4/dataset/ml-1m/"` 
+    # path: /home/sist/zyang/LLM/datasets/ml-1m
+    data_type: default
+    build_info:
+      # storage: /path/to/cc_sbu_dataset/{00000..01255}.tar
+      storage: /home/sist/zyang/LLM/datasets/ml-1m/ #~/LLM/MiniGPT-4/dataset/ml-100k/
+      # storage: /home/sist/zyang/LLM/datasets/ml-1m/
+
+run:
+  task: rec_pretrain
+  # optimizer
+  lr_sched: "linear_warmup_cosine_lr"
+  # init_lr: 1e-4
+  # min_lr: 8e-5c
+  init_lr: 1e-3
+  min_lr: 8e-5
+  warmup_lr: 1e-5
+  # init_lr: 3e-5
+  # min_lr: 1e-5
+  # warmup_lr: 1e-6
+  mode: 'v2' # stage1: v1, 
+
+  weight_decay: 1e-3 #0.05
+  max_epoch: 200
+  iters_per_epoch: 50 #100 #50 #200
+  batch_size_train: 16 #48
+  batch_size_eval: 64 #48
+  num_workers: 4
+  warmup_steps: 200 #200
+
+  seed: 42
+  # output_dir: "output"
+  output_dir: /home/sist/zyang/LLM/minigpt4recLog
+  # output_dir: "home/zyang/LLM/minigpt4recLog/minigpt4rec_finetune"
+
+  amp: True
+  resume_ckpt_path: null
+
+  evaluate: False
+  train_splits: ["train"]
+  valid_splits: ["valid"]
+  test_splits: ["test","valid"]
+
+  device: "cuda"
+  world_size: 1
+  dist_url: "env://"
+  distributed: True

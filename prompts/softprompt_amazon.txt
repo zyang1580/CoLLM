@@ -1,0 +1,4 @@
+#Question: <UserID> <ItemTitleList> [SEP] <TargetItemID> <TargetItemTitle> [SEP] Using all available information, make a prediction about whether the user would enjoy the book? Answer with "Yes" or "No". \n#Answer:
+#Question: <UserID> <ItemTitleList> [SEP] <TargetItemID> <TargetItemTitle> [SEP] Using all available information, make a prediction about whether the user would enjoy the book? Answer with "Yes" or "No". \n#Answer:
+#Question: <UserID> <ItemTitleList> [SEP] <TargetItemID> <TargetItemTitle> [SEP] Using all available information, make a prediction about whether the user would enjoy the book? Answer with "Yes" or "No". \n#Answer:
+#Question: <UserID> <ItemTitleList> [SEP] <TargetItemID> <TargetItemTitle> [SEP] Using all available information, make a prediction about whether the user would enjoy the book? Answer with "Yes" or "No". \n#Answer:

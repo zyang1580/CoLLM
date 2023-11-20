@@ -64,6 +64,23 @@ conda env create -f environment.yml
 conda activate minigpt4
 ```
 
+***Code Structure:*** 
+- **minigpt4**: Core code of CoLLM, following the structure of MiniGPT-4.
+    - *models*: Defines our CoLLM model architecture.
+    - *datasets*: Defines dataset classes.
+    - *task*: A overall task class, defining the used model, training epoch, used datasets, and evaluation.
+    - *runners*: A runner class to train and evaluate a model based on a task.
+    - *common*: Commonly used functions.
+
+- **dataset**: Dataset pre-processing.
+
+- **prompt**: Used prompts.
+
+- **train_configs**: Training configuration files, setting hyperparameters.
+
+- **train_collm_xx.py**: Our CoLLM training file.
+
+- **baseline_train_xx.py**: Baseline training file.
 
 **2. Prepare the pretrained Vicuna weights**
 
@@ -81,15 +98,16 @@ vicuna_weights
 ...   
 ```
 
-Then, set the path to the vicuna weight in the `"llama_model" ` field of a traing config file, e.g., [here](train_configs_/collm_pretrain_mf_ood.yaml#L20)  for CoLLM-MF.
+Then, set the path to the vicuna weight in the `"llama_model" ` field of a traing config file, e.g., [here](train_configs/collm_pretrain_mf_ood.yaml#L15)  for CoLLM-MF.
 
 **3. Prepare the Datasets**
-You can process the data yourself using the code provided in the ```./dataset``` directory. Alternatively, you can download our pre-processed data from [here](http:///xxxx).
+
+You can process the data yourself using the code provided in the ```./dataset``` directory. Alternatively, you can download our pre-processed data from [here](collm-datasets).
 
 
 
 ### Training
-The training of CoLLM contains two stages.
+The training of CoLLM contains two stages:
 
 **1. LoRA Tuning**
 
@@ -164,5 +182,5 @@ If you're using CoLLM code in your research or applications, please cite our pap
 
 ## License
 This repository is under [BSD 3-Clause License](LICENSE.md).
-Many codes are based on [MiniGPT-4]() with BSD 3-Clause License [here](LICENSE_minigpt4.md) and [Lavis](https://github.com/salesforce/LAVIS) with 
+Many codes are based on [MiniGPT-4]() with BSD 3-Clause License [here](LICENSE_minigpt4.md), which is build upon [Lavis](https://github.com/salesforce/LAVIS) with 
 BSD 3-Clause License [here](LICENSE_Lavis.md).

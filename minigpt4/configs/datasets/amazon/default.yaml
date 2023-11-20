@@ -1,6 +1,0 @@
-# datasets:
-#   movielens:
-#     data_type: default
-#     build_info:
-#       # storage: /path/to/cc_sbu_dataset/{00000..01255}.tar
-#       storage: ~/LLM/MiniGPT-4/dataset/ml-100k/

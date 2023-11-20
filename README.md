@@ -65,7 +65,7 @@ conda activate minigpt4
 ```
 
 ***Code Structure:*** 
-- **minigpt4**: Core code of CoLLM, following the structure of MiniGPT-4.
+<!-- - **minigpt4**: Core code of CoLLM, following the structure of MiniGPT-4.
     - *models*: Defines our CoLLM model architecture.
     - *datasets*: Defines dataset classes.
     - *task*: A overall task class, defining the used model, training epoch, used datasets, and evaluation.
@@ -80,7 +80,23 @@ conda activate minigpt4
 
 - **train_collm_xx.py**: Our CoLLM training file.
 
-- **baseline_train_xx.py**: Baseline training file.
+- **baseline_train_xx.py**: Baseline training file. -->
+
+
+```
+├──minigpt4: Core code of CoLLM, following the structure of MiniGPT-4.
+    ├── models: Defines our CoLLM model architecture.
+    ├── datasets: Defines dataset classes.
+    ├── task: A overall task class, defining the used model and datasets, training epoch and evaluation.
+    ├── runners: A runner class to train and evaluate a model based on a task.
+    ├── common: Commonly used functions.
+├──dataset: Dataset pre-processing.
+├──prompt: Used prompts.
+├──train_configs: Training configuration files, setting hyperparameters.
+├──train_collm_xx.py CoLLM training file.
+├──baseline_train_xx.py: Baseline training file.
+
+```
 
 **2. Prepare the pretrained Vicuna weights**
 
@@ -102,7 +118,7 @@ Then, set the path to the vicuna weight in the `"llama_model" ` field of a train
 
 **3. Prepare the Datasets**
 
-You can process the data yourself using the code provided in the ```./dataset``` directory. Alternatively, you can download our pre-processed data from [here](collm-datasets).
+You can process the data yourself using the code provided in the ```./dataset``` directory. Alternatively, you can download our pre-processed data from [here](collm-datasets/).
 
 
 

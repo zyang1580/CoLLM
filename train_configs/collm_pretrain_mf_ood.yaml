@@ -1,79 +1,72 @@
 model:
-  arch: mini_gpt4rec_v2
+  arch: mini_gpt4rec_v2 # by default
   model_type: pretrain_vicuna
-  freeze_rec: True
-  freeze_proj: False  # stage 1: proj false, lora: false
-  freeze_lora: False #  sateg2: proj false, lora True
-  max_txt_len: 1024
-  proj_token_num: 1
-  proj_drop: 0
-  proj_mid_times: 10
+  freeze_rec: True  # 
+  freeze_proj: True #    
+  freeze_lora: False #
+  max_txt_len: 1024 # by default
+  proj_token_num: 1 # default:1,  the number of text token embeddings that the A single ID embedding is converted into
+  proj_drop: 0 # by default
+  proj_mid_times: 10 # proj_mid_times * rec embedding size = the middle layer size of the mapping module
   end_sym: "###"
-  prompt_path: "prompts/rec_alignment.txt"
-  # prompt_template: '### Input: {} \n### Response:'
+  prompt_path: "prompts/tallrec_movie.txt"
   prompt_template: '{}'
-  llama_model: "/data/zyang/LLM/PretrainedModels/vicuna/working-v0/"
+  llama_model: "/data/zyang/LLM/PretrainedModels/vicuna/working-v0/" #vicuna path
   user_num: -100
   item_num: -100
-  ans_type: 'v2'
+  ans_type: 'v2' # by default
+  rec_model: "MF" #[MF, lightgcn,.....], see "Rec2Base" class in  minigpt4/models/rec_model.py
   lora_config:
     use_lora: True
     r: 8
     alpha: 16
-    target_modules: ["q_proj", "v_proj"] # ['lm_head'] ['lm_head'] #
+    target_modules: ["q_proj", "v_proj"] # default: ["q_proj", "v_proj"]; others? ['lm_head'], ["q_proj", "v_proj",'k_proj','o_proj'] 
     dropout: 0.05
-  rec_config:
+  rec_config: # recommender model config
     user_num: -100
     item_num: -100
-    embedding_size: 256
-    pretrained_path: /data2/zyang/minigpt4rec-log/0912_ml1m_oodv2_best_model_d256lr-0.001wd0.0001.pth
+    embedding_size: 256 #embedding size
+    pretrained_path: /data2/zyang/minigpt4rec-log/0912_ml1m_oodv2_best_model_d256lr-0.001wd0.0001.pth # pretrained rec model 
 
 
-  ckpt: /home/sist/zyang/LLM/minigpt4recLog/20231013024/checkpoint_best.pth
+  #ckpt: /home/sist/zyang/LLM/minigpt4recLog/20230918143/checkpoint_best.pth # used for CIE tuning or evaluation  
 
   
 
 datasets:
   movie_ood:
-    path: "/data/zyang/datasets/ml-1m/" #/home/zyang/LLM/MiniGPT-4/dataset/ml-100k/   #"~/LLM/MiniGPT-4/dataset/ml-100k/"
-    # path: "~/LLM/MiniGPT-4/dataset/ml-1m/"` 
-    # path: /home/sist/zyang/LLM/datasets/ml-1m
+    path: "/data/zyang/datasets/ml-1m/" #data path
     data_type: default
     build_info:
-      # storage: /path/to/cc_sbu_dataset/{00000..01255}.tar
-      storage: "/data/zyang/datasets/ml-1m/" #/home/zyang/LLM/MiniGPT-4/dataset/ml-100k/ #~/LLM/MiniGPT-4/dataset/ml-100k/
-      # storage: /home/sist/zyang/LLM/datasets/ml-1m/
+      storage: "/data/zyang/datasets/ml-1m/" # data path
 
 run:
   task: rec_pretrain
-  # optimizer
-  lr_sched: "linear_warmup_cosine_lr" #"linear_warmup_step_lr" #"linear_warmup_cosine_lr"
+  lr_sched: "linear_warmup_cosine_lr"
   init_lr: 1e-3
   min_lr: 8e-5
   warmup_lr: 1e-5
-  mode: 'v2' # stage1: v1, 
+  mode: 'v2' # always, please not change it
 
 
-  weight_decay: 1e-3 #0.05
+  weight_decay: 1e-3 # by default
   max_epoch: 200
-  iters_per_epoch: 50 #100 #50 #200
-  batch_size_train: 16 #
-  batch_size_eval: 64 #
+  iters_per_epoch: 50 #100 
+  batch_size_train: 16 # 8
+  batch_size_eval: 64 # 32
   num_workers: 4
   warmup_steps: 200
 
   seed: 42
-  # output_dir: "output"
-  output_dir: /data2/zyang/minigpt4rec-log
-  # output_dir: "home/zyang/LLM/minigpt4recLog/minigpt4rec_finetune"
+  output_dir: /data2/zyang/minigpt4rec-log #log and model saving path
 
   amp: True
   resume_ckpt_path: null
 
-  evaluate: False 
-  train_splits: ["train"]
-  valid_splits: ["valid"]
-  test_splits: ["test","valid"]
+  evaluate: False # False: training, True: only evaluation 
+  train_splits: ["train"] 
+  valid_splits: ["valid"] # validation set
+  test_splits: ["test","valid"] # used when evluate=True, reporting both the testing and validation results
 
   device: "cuda"
   world_size: 1

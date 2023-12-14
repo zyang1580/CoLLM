@@ -25,7 +25,7 @@ from minigpt4.models.base_model import BaseModel
 from transformers import BertTokenizer
 import warnings
 
-from minigpt4.models.rec_base_models import MatrixFactorization, MF_linear,LightGCN, SASRec, DCN, Personlized_Prompt, random_mf, Soft_Prompt, RecEncoder_DIN
+from minigpt4.models.rec_base_models import MatrixFactorization, MF_linear,LightGCN, SASRec, Personlized_Prompt, random_mf, Soft_Prompt, RecEncoder_DIN
 
 
 class Rec2Base(BaseModel):

@@ -97,6 +97,7 @@ conda activate minigpt4
 ├──baseline_train_xx.py: Baseline training file.
 
 ```
+Note: For the meaning of the parameters involved in train_configs, please read the comments of collm_pretrain_mf_ood.yaml. The parameters in other train_config files have the same meaning.
 
 **2. Prepare the pretrained Vicuna weights**
 

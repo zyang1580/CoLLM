@@ -34,7 +34,7 @@ More examples can be found in the [project page](https://minigpt-4.github.io).
 - MiniGPT-4 yields many emerging vision-language capabilities similar to those demonstrated in GPT-4. 
 
 
-![overview](figs/overview.png)
+<!-- ![overview](figs/overview.png) -->
 
 
 ## Getting Started

@@ -146,7 +146,7 @@ CUDA_VISIBLE_DEVICES=6,7 WORLD_SIZE=2 nohup torchrun --nproc-per-node 2 --master
 ```
 
 
-Our CoLLM checkpoint for this stage training can be downloaded at [here (7B)](https://xxxxx). **Note that, the model obtained in this stage can be thought as a version of TALLRec.**
+Our CoLLM checkpoint for this stage training can be downloaded at [here (7B)](0923_book_oodv2_best_model_d256lr-0.001wd1e-06.pth). **Note that, the model obtained in this stage can be thought as a version of TALLRec.**
 
 
 

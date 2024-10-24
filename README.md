@@ -3,9 +3,15 @@
 
 **University of Science and Technology of China**
 
+
+**###### Update: Added the Qwen2-1.5B backbone; refer to files containing 'qwen' in their names and our revised paper.**
+
+
 <a href='https://arxiv.org/abs/2310.19488'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> 
 
 **This repository is constructed based on [MiniGPT-4](https://github.com/Vision-CAIR/MiniGPT-4)!**
+
+
 
 <!-- ## News
 We now provide a pretrained MiniGPT-4 aligned with Vicuna-7B! The demo GPU memory consumption now can be as low as 12GB. -->

@@ -1,0 +1,81 @@
+model:
+  arch: mini_gpt4rec_v2
+  model_type: pretrain_vicuna
+  freeze_rec: True
+  freeze_proj: False  # stage 1: proj false, lora: false
+  freeze_lora: True #  sateg2: proj true, lora false
+  max_txt_len: 1024
+  proj_token_num: 1
+  proj_drop: 0
+  proj_mid_times: 10
+  end_sym: "###"
+  prompt_path: "prompts/collm_amazon.txt"
+  # prompt_template: '### Input: {} \n### Response:'
+  prompt_template: '{}'
+  llama_model: "Qwen/Qwen2-1.5B"
+  user_num: -100
+  item_num: -100
+  ans_type: 'v2'
+  lora_config:
+    use_lora: True
+    r: 8
+    alpha: 16
+    target_modules: ["q_proj", "v_proj"] # ['lm_head'] ##["lm_head"] # ['lm_head'] ['lm_head'] #
+    dropout: 0.05
+  rec_config:
+    user_num: -100
+    item_num: -100
+    embedding_size: 256
+    pretrained_path: /home/fengfl/code/CoLLM/log_collm/0923_book_oodv2_best_model_d256lr-0.001wd1e-06.pth
+  
+  ckpt: /data/fengfl/collm/20241017201/checkpoint_best.pth #trained_tallrec
+  # ckpt: /data/fengfl/collm/20241023154/checkpoint_best.pth # trained collm for testing
+
+  
+
+datasets:
+  amazon_ood:
+    path: /home/fengfl/code/E2LLM/datasets/processed/book/
+    data_type: default
+    build_info:
+      storage: /home/fengfl/code/E2LLM/datasets/processed/book/
+
+run:
+  task: rec_pretrain
+  # optimizer
+  lr_sched: "linear_warmup_cosine_lr"  # "linear_warmup_step_lr"
+  # init_lr: 1e-4
+  # min_lr: 8e-5c
+  init_lr: 1e-2
+  min_lr: 8e-5
+  warmup_lr: 1e-5
+  # init_lr: 3e-5
+  # min_lr: 1e-5
+  # warmup_lr: 1e-6
+  mode: 'v2' 
+
+  weight_decay: 1e-3 #0.05
+  max_epoch: 1000
+  iters_per_epoch: 100 #100 #50 #200
+  batch_size_train: 8 #48
+  batch_size_eval: 32 #48
+  num_workers: 4
+  warmup_steps: 200 #200
+
+  seed: 42
+  # output_dir: "output"
+  output_dir: /data/fengfl/collm/
+  # output_dir: "home/zyang/LLM/minigpt4recLog/minigpt4rec_finetune"
+
+  amp: True
+  resume_ckpt_path: null
+
+  evaluate: False #False
+  train_splits: ["train"]
+  valid_splits: ["valid"]
+  test_splits: ["test","test_warm", "test_cold", "valid"]
+
+  device: "cuda"
+  world_size: 1
+  dist_url: "env://"
+  distributed: True

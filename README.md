@@ -4,7 +4,7 @@
 **University of Science and Technology of China**
 
 
-**###### Update: Added the Qwen2-1.5B backbone; refer to files containing 'qwen' in their names and our revised paper.**
+**###### Update[10.2024]: Added the Qwen2-1.5B backbone; refer to files containing 'qwen' in their names and our revised paper.**
 
 
 <a href='https://arxiv.org/abs/2310.19488'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> 
